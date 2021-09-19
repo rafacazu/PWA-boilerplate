@@ -1,0 +1,34 @@
+$normal-font: "IBM Plex Mono", monospace; //"Fira Code", monospace;
+$title-font: "Roboto Slab", serif;
+
+body {
+  font-family: $normal-font;
+  font-size: rem(16);
+  line-height: rem(21);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: $title-font;
+}
+
+h2 {
+  font-size: rem(36);
+}
+
+a {
+  &.primary {
+    color: $cyan;
+    text-decoration: none;
+  }
+}
+
+.title {
+  font-family: $title-font;
+  text-transform: uppercase;
+  font-size: 25px;
+  letter-spacing: 12px;
+}

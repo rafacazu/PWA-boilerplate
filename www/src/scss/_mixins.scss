@@ -1,0 +1,6 @@
+$default-pixel-size: 14; // Default
+
+@function rem($size) {
+  $remSize: $size / $default-pixel-size;
+  @return #{$remSize}rem;
+}
