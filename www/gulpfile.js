@@ -47,15 +47,15 @@ const config = {
   publicRoot: "./build",
   js_dev_src: `./src/js/**/*.{js,map}`,
   js_dest: `${buildDirectory}/assets/js`,
-  js_watch: `${buildDirectory}/assets/js/**`
+  js_watch: `${buildDirectory}/assets/js/**`,
 };
 
 gulp.task("webpack", async () => {
-  const main = config.webpack_src;
-  const serviceWorker = config.webpack_src_service_worker;
-
-  const entries = { main, ["service-worker"]: serviceWorker };
-
+  // service-worker needs to be in the root of the page
+  const entries = {
+    'main': config.webpack_src,
+    '../../service-worker' : config.webpack_src_service_worker,
+  };
   // Optimise react.js using Webpack production mode
   const projectWebpackConfig = {
     ...webpackConfig,
@@ -133,6 +133,14 @@ gulp.task("js", () => {
   return gulp
     .src([config.js_dev_src])
     .pipe(gulp.dest(config.js_dest))
+    .on("error", handleErrors)
+    .pipe(browserSync.stream());
+});
+
+gulp.task("js-sw", () => {
+  return gulp
+    .src([config.js_sw_watch])
+    .pipe(gulp.dest("./src"))
     .on("error", handleErrors)
     .pipe(browserSync.stream());
 });

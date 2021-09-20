@@ -10,6 +10,6 @@ export default class HandleAnimation {
   }
 
   init() {
-    console.log("Initializing component...")
+    console.log("Initializing component.")
   }
 }

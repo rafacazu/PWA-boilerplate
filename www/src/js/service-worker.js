@@ -17,7 +17,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(PRECACHE)
       .then(cache => cache.addAll(PRECACHE_URLS))
-      //.then(self.skipWaiting())
+      .then(self.skipWaiting())
   );
 });
 
@@ -64,7 +64,6 @@ self.addEventListener('activate', event => {
 self.addEventListener("fetch", event => {
   if (event.request.url.startsWith(self.location.origin)) {
     console.log('event.request.url', event.request.url)
-      // or whatever your app's URL is
       event.respondWith(
           fetch(event.request).catch(err =>
               self.caches.open(PRECACHE).then(cache => cache.match("/html/offline.html"))
